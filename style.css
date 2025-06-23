@@ -1,0 +1,364 @@
+/* Importando fontes cyberpunk do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Press+Start+2P&display=swap');
+
+:root {
+    --bg-dark: #0A0A0E;
+    --text-light: #E0E0E0;
+    --neon-blue: #00FFFF; /* Ciano */
+    --neon-magenta: #FF00FF; /* Magenta */
+    --neon-green: #00FF00; /* Verde */
+    --border-color: #333;
+    --input-bg: #1A1A22;
+}
+
+body {
+    font-family: 'Press Start 2P', cursive; /* Fonte pixelizada para o texto geral */
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow: hidden; /* Para garantir que os efeitos de fundo não causem scrollbars */
+    position: relative; /* Para posicionar o grid de fundo */
+}
+
+/* Efeito de grade de fundo */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        linear-gradient(to right, rgba(0, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: grid-flicker 10s infinite alternate;
+    z-index: -2; /* Atrás de tudo */
+}
+
+@keyframes grid-flicker {
+    0%, 100% { background-position: 0 0; opacity: 1; }
+    50% { background-position: 10px 10px; opacity: 0.9; }
+}
+
+/* Overlay de "ruído" */
+body::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAUVBMVEUAAAAAAAAAAAAAAABISEgAAAD+/v7+/v7///8AAADw8PDh4eHExMTLy8vV1dWvr6/S0tLa2tru7u7g4ODOzs7Q0NDJycnKysq6urrCwsLIyMjGxsbW1tYvT8u3AAAAO3RSTlMAAQIFCAoLDQ4PExUWFxgZGhscHR4fICEjJSYnKCkqKywuLzAxMjM0NTY3NztAQEFCREhJSkyMjI+PkZKTlJWWmJmbnZ6foaKjpKWmp6ipqquxtbe4u72+x8jJztHS09TV19mfn6ChoqOlp6enqquxsbS2t72+v8DBwsPExMfHycnKy8zNzs/R0dLS09TY2drb3d7f4OHi4+TlLt1uVAAAAEZJREFUeNrtlgsOgCAQRP1gqN2K27z/S7sLp0k31b402R8d+E0z2yLGY0jLkiQphwLpI5nI5vH400z+J81L+eF+fV+eBf8+L+aJ+Wv6L/r/P5g1R00VpU6sF0AAAAAElFTkSuQmCC'); /* Um pequeno padrão de ruído */
+    opacity: 0.05; /* Bem sutil */
+    pointer-events: none; /* Não interfere com cliques */
+    z-index: -1;
+}
+
+
+.container {
+    background-color: var(--input-bg);
+    border: 2px solid var(--neon-blue);
+    box-shadow: 0 0 15px var(--neon-blue), 0 0 30px var(--neon-magenta);
+    padding: 30px;
+    border-radius: 8px;
+    text-align: center;
+    max-width: 550px;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 10;
+}
+
+h1 {
+    font-family: 'Major Mono Display', monospace; /* Fonte para o título */
+    color: var(--neon-blue);
+    text-shadow: 0 0 5px var(--neon-blue), 0 0 10px var(--neon-magenta);
+    margin-bottom: 10px;
+    font-size: 2.8em;
+    position: relative;
+    letter-spacing: 2px;
+}
+
+/* Efeito Glitch no título */
+.glitch {
+    position: relative;
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    color: var(--neon-blue);
+    filter: blur(1px);
+}
+
+.glitch::before {
+    left: 2px;
+    text-shadow: -2px 0 var(--neon-magenta);
+    animation: glitch-anim-1 2s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+    left: -2px;
+    text-shadow: -2px 0 var(--neon-green);
+    animation: glitch-anim-2 2s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim-1 {
+    0% { clip: rect(20px, 9999px, 30px, 0); }
+    10% { clip: rect(70px, 9999px, 80px, 0); }
+    20% { clip: rect(10px, 9999px, 20px, 0); }
+    30% { clip: rect(50px, 9999px, 60px, 0); }
+    40% { clip: rect(80px, 9999px, 90px, 0); }
+    50% { clip: rect(30px, 9999px, 40px, 0); }
+    60% { clip: rect(90px, 9999px, 100px, 0); }
+    70% { clip: rect(40px, 9999px, 50px, 0); }
+    80% { clip: rect(0px, 9999px, 10px, 0); }
+    90% { clip: rect(60px, 9999px, 70px, 0); }
+    100% { clip: rect(20px, 9999px, 30px, 0); }
+}
+
+@keyframes glitch-anim-2 {
+    0% { clip: rect(10px, 9999px, 20px, 0); }
+    15% { clip: rect(60px, 9999px, 70px, 0); }
+    30% { clip: rect(30px, 9999px, 40px, 0); }
+    45% { clip: rect(80px, 9999px, 90px, 0); }
+    60% { clip: rect(0px, 9999px, 10px, 0); }
+    75% { clip: rect(70px, 9999px, 80px, 0); }
+    90% { clip: rect(20px, 9999px, 30px, 0); }
+    100% { clip: rect(50px, 9999px, 60px, 0); }
+}
+
+
+.tagline {
+    color: var(--neon-green);
+    margin-bottom: 30px;
+    font-size: 0.8em;
+    text-shadow: 0 0 3px var(--neon-green);
+}
+
+.output-section {
+    display: flex;
+    margin-bottom: 25px;
+    background-color: var(--input-bg);
+    border: 1px solid var(--neon-blue);
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
+}
+
+#passwordOutput {
+    flex-grow: 1;
+    padding: 15px;
+    border: none;
+    background: none;
+    color: var(--text-light);
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1em;
+    outline: none;
+    caret-color: var(--neon-green);
+    text-overflow: ellipsis; /* Adiciona "..." se a senha for muito longa */
+    white-space: nowrap; /* Impede que a senha quebre a linha */
+}
+
+#passwordOutput::placeholder {
+    color: rgba(224, 224, 224, 0.4);
+}
+
+.neon-button {
+    background-color: var(--neon-blue);
+    color: var(--bg-dark);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.9em;
+    text-shadow: 0 0 3px var(--bg-dark);
+    box-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
+    transition: background-color 0.3s, box-shadow 0.3s, transform 0.1s;
+    position: relative;
+    overflow: hidden;
+}
+
+.neon-button:hover {
+    background-color: var(--neon-magenta);
+    box-shadow: 0 0 15px var(--neon-magenta), 0 0 30px var(--neon-magenta);
+    transform: translateY(-2px);
+}
+
+.neon-button.primary {
+    background-color: var(--neon-green);
+    box-shadow: 0 0 10px var(--neon-green), 0 0 20px var(--neon-green);
+}
+
+.neon-button.primary:hover {
+    background-color: var(--neon-blue);
+    box-shadow: 0 0 15px var(--neon-blue), 0 0 30px var(--neon-blue);
+}
+
+.controls-section {
+    text-align: left;
+    margin-bottom: 25px;
+}
+
+.control-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    background-color: var(--input-bg);
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px dashed var(--neon-green);
+    box-shadow: inset 0 0 5px rgba(0, 255, 0, 0.3);
+}
+
+.control-group label {
+    flex-shrink: 0;
+    margin-right: 15px;
+    color: var(--neon-green);
+    font-size: 0.9em;
+}
+
+input[type="range"] {
+    flex-grow: 1;
+    -webkit-appearance: none;
+    width: 100%;
+    height: 6px;
+    background: var(--border-color);
+    border-radius: 3px;
+    outline: none;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+input[type="range"]:hover {
+    opacity: 1;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--neon-blue);
+    cursor: pointer;
+    box-shadow: 0 0 5px var(--neon-blue), 0 0 10px var(--neon-magenta);
+    transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+    background-color: var(--neon-magenta);
+    box-shadow: 0 0 8px var(--neon-magenta), 0 0 15px var(--neon-blue);
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--neon-blue);
+    cursor: pointer;
+    box-shadow: 0 0 5px var(--neon-blue), 0 0 10px var(--neon-magenta);
+    transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+input[type="range"]::-moz-range-thumb:hover {
+    background-color: var(--neon-magenta);
+    box-shadow: 0 0 8px var(--neon-magenta), 0 0 15px var(--neon-blue);
+}
+
+#lengthValue {
+    margin-left: 15px;
+    color: var(--neon-magenta);
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.checkbox-group {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-group input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--neon-green);
+    background-color: transparent;
+    border-radius: 3px;
+    cursor: pointer;
+    position: relative;
+    outline: none;
+    margin-right: 10px;
+    box-shadow: inset 0 0 5px rgba(0, 255, 0, 0.3);
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.checkbox-group input[type="checkbox"]:checked {
+    background-color: var(--neon-green);
+    border-color: var(--neon-green);
+    box-shadow: 0 0 8px var(--neon-green);
+}
+
+.checkbox-group input[type="checkbox"]:checked::after {
+    content: '✓';
+    color: var(--bg-dark);
+    font-size: 14px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.checkbox-group label {
+    color: var(--text-light);
+    font-size: 0.9em;
+}
+
+#generateButton {
+    width: 100%;
+    padding: 15px;
+    margin-top: 20px;
+    font-size: 1.1em;
+}
+
+footer {
+    margin-top: 40px;
+    color: rgba(224, 224, 224, 0.5);
+    font-size: 0.7em;
+    text-align: center;
+    text-shadow: 0 0 2px rgba(0, 255, 255, 0.3);
+}
+
+/* Responsividade básica */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2em;
+    }
+    .container {
+        padding: 20px;
+    }
+    .neon-button {
+        padding: 8px 15px;
+        font-size: 0.8em;
+    }
+    #passwordOutput {
+        font-size: 0.9em;
+    }
+}
