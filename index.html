@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CryptoGuard - Gerador de Senhas Cyberpunk</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="glitch" data-text="CryptoGuard">CryptoGuard</h1>
+        <p class="tagline">_Sua fortificação digital começa aqui_</p>
+
+        <div class="output-section">
+            <input type="text" id="passwordOutput" placeholder="Senha gerada..." readonly>
+            <button id="copyButton" class="neon-button">Copiar</button>
+        </div>
+
+        <div class="controls-section">
+            <div class="control-group">
+                <label for="passwordLength">Comprimento:</label>
+                <input type="range" id="passwordLength" min="8" max="32" value="16">
+                <span id="lengthValue">16</span>
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="includeUppercase" checked>
+                <label for="includeUppercase">Maiúsculas (A-Z)</label>
+            </div>
+            <div class="checkbox-group">
+                <input type="checkbox" id="includeLowercase" checked>
+                <label for="includeLowercase">Minúsculas (a-z)</label>
+            </div>
+            <div class="checkbox-group">
+                <input type="checkbox" id="includeNumbers" checked>
+                <label for="includeNumbers">Números (0-9)</label>
+            </div>
+            <div class="checkbox-group">
+                <input type="checkbox" id="includeSymbols">
+                <label for="includeSymbols">Símbolos (!@#$%...)</label>
+            </div>
+
+            <button id="generateButton" class="neon-button primary">Gerar Senha</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>// Online desde 2077 // Protocolos de segurança em execução</p>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>
